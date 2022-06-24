@@ -1,0 +1,36 @@
+<html>
+<body>
+
+<input id="search_bar" placeholder="Enter text here" />
+<button onclick="get_server_from_api()">Run!</button>
+
+<div id="output"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+// const axios = require('axios');
+
+function get_server_from_api() {
+  // var search_text = document.getElementById('search_bar').value;
+  
+  axios.get('http://127.0.0.1:8080/server')
+    .then(function (response) {
+      // handle success
+      console.log(response);
+      var el = document.getElementById('output');
+      el.innerHTML = JSON.stringify(response.data);
+
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+  }
+</script>
+
+</body>
+</html>
